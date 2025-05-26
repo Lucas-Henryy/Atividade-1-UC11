@@ -68,13 +68,30 @@ public class ProdutosDAO {
              }
             }catch (Exception e){
         
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar!");
+            JOptionPane.showMessageDialog(null, "Erro ao Listar!");
         }
         return listagem;
     }
     
     
+    public void venderProduto (int id){
     
+        try{
+        
+            conn = new conectaDAO().connectDB();
+            String sql = " UPDATE produtos SET status = 'Vendido' where id = ?";
+            prep = conn.prepareStatement(sql);
+            prep.setInt(1,id);
+            prep.executeUpdate();
+            
+             JOptionPane.showMessageDialog(null, "Produto vendido com sucesso!");
+        
+        } catch (Exception e){
+        
+        JOptionPane.showMessageDialog(null, "Erro ao Vender");
+        }
+    
+    }
         
 }
 
